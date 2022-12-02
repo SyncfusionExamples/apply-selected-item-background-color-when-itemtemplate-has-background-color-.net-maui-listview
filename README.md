@@ -135,3 +135,5 @@ public class SelectionBoolToBackgroundColorConverter : IValueConverter
     throw new NotImplementedException();
   }
 }
+
+Please take a moment to peruse the documentation to learn more about Selection and its related operations in the SfListView with code examples.
