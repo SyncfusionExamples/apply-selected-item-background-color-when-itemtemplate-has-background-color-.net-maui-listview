@@ -1,0 +1,90 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>ListViewMaui</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>ListViewMaui</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.listviewmaui</ApplicationId>
+		<ApplicationIdGuid>d62e9c3c-1ba6-4189-8db3-08b394f61b01</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">14.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Images\favorites %282%29.png" />
+	  <None Remove="Images\favorites.png" />
+	  <None Remove="Images\favorites1 %282%29.png" />
+	  <None Remove="Images\favorites1.png" />
+	  <None Remove="Images\inboxicon %282%29.png" />
+	  <None Remove="Images\inboxicon.png" />
+	  <None Remove="Images\movies &amp; music %282%29.png" />
+	  <None Remove="Images\movies &amp; music.png" />
+	  <None Remove="Images\notselected %282%29.png" />
+	  <None Remove="Images\notselected.png" />
+	  <None Remove="Images\selected %282%29.png" />
+	  <None Remove="Images\selected.png" />
+	  <None Remove="Images\selectioncancel %282%29.png" />
+	  <None Remove="Images\selectioncancel.png" />
+	  <None Remove="Images\selectionedit %282%29.png" />
+	  <None Remove="Images\selectionedit.png" />
+	  <None Remove="Images\songthumbnail %282%29.png" />
+	  <None Remove="Images\songthumbnail.png" />
+	  <None Remove="Images\sorticon %282%29.png" />
+	  <None Remove="Images\sorticon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiImage Include="Images\favorites.png" />
+	  <MauiImage Include="Images\favorites1.png" />
+	  <MauiImage Include="Images\inboxicon.png" />
+	  <MauiImage Include="Images\notselected.png" />
+	  <MauiImage Include="Images\selected.png" />
+	  <MauiImage Include="Images\selectioncancel.png" />
+	  <MauiImage Include="Images\selectionedit.png" />
+	  <MauiImage Include="Images\songthumbnail.png" />
+	  <MauiImage Include="Images\sorticon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Syncfusion.Maui.ListView" Version="20.2.50" />
+	</ItemGroup>
+
+</Project>
