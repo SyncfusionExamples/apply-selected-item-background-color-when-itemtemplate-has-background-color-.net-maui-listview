@@ -1,10 +1,13 @@
 # apply-selected-item-background-color-when-itemtemplate-has-background-color-.net-maui-listview
 How to apply the selected item background color when the ItemTemplate view has a background color in .NET MAUI ListView (SfListView) ?
-In the .NET MAUI ListView (SfListView), the item background color will not be displayed for the selected item if the background color is defined for the ItemTemplate, which is the actual behavior in the framework. However, it is achieved through a workaround by defining a property in the data model and using a custom converter.
-In the model class, define the IsSelected property, which indicates whether the item is selected and will be updated when the selection is performed using the SelectionChanged event. Based on this property, change the background color of View defined in the ItemTemplate property by custom converter class. 
-C#
-The SfListView SelectionChanged EventArgs contains two properties; the AddedItems and RemovedItems. Here, you can get the data of the selected item.
-```
+
+In the [.NET MAUI ListView (SfListView)](https://www.syncfusion.com/maui-controls/maui-listview), the item background color will not be displayed for the selected item if the background color is defined for the ItemTemplate, which is the actual behavior in the framework. However, it is achieved through a workaround by defining a property in the data model and using a custom converter.
+
+In the model class, define the `IsSelected` property, which indicates whether the item is selected and will be updated when the selection is performed using the `SelectionChanged` event. Based on this property, change the background color of View defined in the ItemTemplate property by custom converter class. 
+
+The SfListView `SelectionChanged` EventArgs contains two properties; the AddedItems and RemovedItems. Here, you can get the data of the selected item.
+
+```c#
 public class Behavior:Behavior<SfListView>
 {
     private SfListView listView;
@@ -40,8 +43,9 @@ public class Behavior:Behavior<SfListView>
     }
 }
 ```
-XAML
+
 Bind the ItemTemplate Background using the Converter value, where the background color of the ItemTemplate will change based on the selected items. 
+```xml
 <ContentPage>
 <ContentPage.BindingContext>
         <local:SelectionViewModel x:Name="viewModel"/>
@@ -121,8 +125,10 @@ Bind the ItemTemplate Background using the Converter value, where the background
         </listView:SfListView>
     </Grid>
 </ContentPage>
+```
 Change the background color of the view based on the IsSelected property using the SelectionBoolToBackgroundColorConverter class.
 
+```c#
 public class SelectionBoolToBackgroundColorConverter : IValueConverter
 {
   public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -135,5 +141,5 @@ public class SelectionBoolToBackgroundColorConverter : IValueConverter
     throw new NotImplementedException();
   }
 }
-
-Please take a moment to peruse the documentation to learn more about Selection and its related operations in the SfListView with code examples.
+```
+Please take a moment to peruse the [documentation](https://help.syncfusion.com/maui/listview/selection) to learn more about Selection and its related operations in the SfListView with code examples.
